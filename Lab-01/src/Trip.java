@@ -1,14 +1,16 @@
-public class Trip {
-    private Rider rider;
-    private String pickupLocation;
-    private String dropoffLocation;
-    private String rideType;
+public class Trip
+{
+    public Rider rider;
+    public String pickupLocation;
+    public String dropoffLocation;
+    private RideType rideType;
     private String status;
     private double fare;
     private Driver driver;
     private int distance;
+    private PaymentMethod paymentMethod;
 
-    public Trip(Rider rider, String pickupLocation, String dropoffLocation, String rideType, int distance)
+    public Trip(Rider rider, String pickupLocation, String dropoffLocation, RideType rideType, int distance, PaymentMethod paymentMethod)
     {
         this.rider = rider;
         this.pickupLocation = pickupLocation;
@@ -16,27 +18,32 @@ public class Trip {
         this.rideType = rideType;
         this.status = "Requested";
         this.fare = calculateFare(distance);
-
+        this.paymentMethod = paymentMethod;
     }
-
     private double calculateFare(int distance)
     {
         this.distance = distance;
-        return distance * 10;
+        return rideType.calculateFare(distance);
     }
-
-
     public void assignDriver(Driver driver)
     {
         this.driver = driver;
         this.status = "Assigned";
-        new NotificationService().sendNotification("Driver assigned", rider);
+        new NotificationService(new SMSNotification()).sendNotification("Driver assigned", rider);
     }
-
     public void completeTrip()
     {
         this.status = "Completed";
-        new NotificationService().sendNotification("Trip completed", rider);
+        rider.makePayment(this);
+        new NotificationService(new SMSNotification()).sendNotification("Trip completed", rider);
+    }
+    public PaymentMethod getPaymentMethod()
+    {
+        return paymentMethod;
+    }
+    public double getFare()
+    {
+        return fare;
     }
 
 }

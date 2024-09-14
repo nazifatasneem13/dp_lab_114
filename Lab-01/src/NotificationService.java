@@ -1,6 +1,11 @@
 public class NotificationService {
-    public void sendNotification(String message, Rider rider)
-    {
-        System.out.println("Notification for " + rider.getName() + ": " + message);
+    private Notification notificationMethod;
+
+    public NotificationService(Notification notificationMethod) {
+        this.notificationMethod = notificationMethod;
+    }
+
+    public void sendNotification(String message, Rider userContact) {
+        notificationMethod.sendNotification(message, userContact);
     }
 }
