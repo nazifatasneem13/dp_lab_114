@@ -1,8 +1,6 @@
-public class CreditCard implements PaymentMethod
-{
+public class CreditCard implements PaymentMethod {
     @Override
-    public void processPayment(double amount)
-    {
+    public void processPayment(double amount) {
         System.out.println("CreditCard: Processing payment of $" + amount);
     }
 }

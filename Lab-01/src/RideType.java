@@ -1,14 +1,5 @@
-public abstract class RideType
-{
-    protected String type;
-    public RideType(String type)
-    {
-        this.type = type;
-    }
-    public abstract double calculateFare(int distance);
+public interface RideType {
+    double calculateFare(int distance); // Change to accept only distance
 
-    public String getType()
-    {
-        return type;
-    }
+    String getType();
 }

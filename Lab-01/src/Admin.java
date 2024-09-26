@@ -4,38 +4,37 @@ public class Admin {
     private int id;
     private String name;
     private String role;
-    public Admin(int id, String name, String role)
-    {
+
+    public Admin(int id, String name, String role) {
         this.id = id;
         this.name = name;
         this.role = role;
     }
-    public void manageDriver(Driver driver)
-    {
+
+    public void manageDriver(Driver driver) {
         System.out.println("Admin " + name + " is managing driver " + driver.getName());
     }
-    public void deactivateDriver(Driver driver)
-    {
-        System.out.println("Admin " + name + " has deactivated driver " + driver.getName());
 
+    public void deactivateDriver(Driver driver) {
+        System.out.println("Admin " + name + " has deactivated driver " + driver.getName());
     }
-    public void manageRider(Rider rider)
-    {
+
+    public void manageRider(Rider rider) {
         System.out.println("Admin " + name + " is managing rider " + rider.getName());
     }
-    public void viewTripHistory(List<Trip> trips)
-    {
+
+    public void viewTripHistory(List<Trip> trips) {
         System.out.println("Admin " + name + " is viewing trip history");
         for (Trip trip : trips) {
-            System.out.println("Trip from " + trip.pickupLocation + " to " + trip.dropoffLocation + " with fare $" + trip.getFare());
+            System.out.println("Trip from " + trip.getPickupLocation() + " to " + trip.getDropoffLocation() + " with fare $" + trip.getFare());
         }
     }
-    public void handleDispute(Rider rider, Driver driver)
-    {
+
+    public void handleDispute(Rider rider, Driver driver) {
         System.out.println("Admin " + name + " is handling a dispute between " + rider.getName() + " and " + driver.getName());
     }
-    public void viewDashboard(List<Trip> trips, List<User> users)
-    {
+
+    public void viewDashboard(List<Trip> trips, List<User> users) {
         double totalPayments = 0;
         int totalRides = trips.size();
         double totalRatings = 0;
