@@ -1,7 +1,7 @@
 import java.util.List;
 
 interface SocialMediaAPI {
-    List<String> getNotifications();
+    List<Notification> getNotifications();
     void markAsRead(String notificationId);
     void deleteNotification(String notificationId);
 }
